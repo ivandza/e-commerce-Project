@@ -1,1 +1,1 @@
-E-commerce SPA for learning
+E-commerce SPA in React for learning
