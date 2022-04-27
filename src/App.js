@@ -1,13 +1,17 @@
-import Navbar from './components/navbar';
-import {Routes,Route} from "react-router-dom"
+import {Routes,Route,Link} from "react-router-dom"
+import React from 'react';
+
 
 import ProductShowcase from "./components/ProductShowcase"
 import ProductPage from "./components/productPage"
-import React from 'react';
+import Navbar from './components/navbar';
+import HomePage from "./components/HomePage"
+import sneakersData from "./sneakers.json"
 import './App.css';
 
 function App() {
   const [number, setNumber] = React.useState(0);
+  console.log(sneakersData.products)
   function changeValue(value) {
     setNumber((prevValue) => prevValue + value);
   }
@@ -18,8 +22,9 @@ function App() {
     <div className="App">
       <Navbar number={number} clearBin={clearBin} />
       <Routes>
-            <Route path="/collections" element={<div className='showcaseContainer'><ProductShowcase/> </div>}/>
-            <Route exact path="/men" element={<ProductPage/>}/>
+            <Route exact path="/" element={<HomePage></HomePage>}/>
+            <Route path="/collections" element={sneakersData.products.map(product=> <div className='showcaseContainer'><ProductShowcase productInfo={product}/> </div>) }/>
+            <Route path="/collections/:shoeId" element= {<ProductPage /> }/>
         </Routes>
     </div>
   );

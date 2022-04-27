@@ -2,35 +2,40 @@ import React from "react";
 import plus from "./../images/icon-plus.svg"
 import minus from "./../images/icon-minus.svg"
 import cartIcon from "./../images/icon-cart.svg"
+import { CartContextConsumer } from "../CartContext";
+
 export default function ProductInfo(props) {
-  const [value,setValue]=React.useState(0)
-  function changeValue(val){
-    if(value!==0 || val!==-1)
-    setValue(prevValue=>prevValue+val)
+  const [valueComp,setValueComp]=React.useState(0)
+  function changeValueComp(val){
+    if(valueComp!==0 || val!==-1)
+    setValueComp(prevValue=>prevValue+val)
   }
 
   return (
     <div className="productInfo">
-      <h5>SNEAKER COMPANY</h5>
-      <h2>Fall Limited Edition Sneakers</h2>
+      <h5>{props.productData.company}</h5>
+      <h2>{props.productData.productName}</h2>
       <p>
-        These low-profile sneakers are your perfect casual wear companion.
-        Featuring a durable ruber outer sole, they'll withstand everything the
-        weather can offer
+      {props.productData.description}
       </p>
       <div className="priceContainer">
-        <h3 className="price">$125.00</h3>
-        <span className="discountBox">50%</span>
-        <div className="exPrice">$250.00</div>
+        <h3 className="price">${props.productData.price*props.productData.discount/100}.00</h3>
+        <span className="discountBox">{props.productData.discount}%</span>
+        <div className="exPrice">${props.productData.price}.00</div>
       </div>
-      <div className="exPrice disappear">$250.00</div>
-      <div className="buyMenu">
+      {/* <div className="exPrice disappear">{props.productData.company}</div>   */}  
+            <div className="buyMenu">
+
         <div className="plusMinusArea">
-          <img src={minus} className="plusMinusButton" onClick={()=>changeValue(-1)} alt="-"/>
-          <b className="numberBox">{value}</b>
-          <img src={plus} className="plusMinusButton" onClick={()=>changeValue(1)} alt="+"/>
+          <img src={minus} className="plusMinusButton" onClick={()=>changeValueComp(-1)} alt="-"/>
+          <b className="numberBox">{valueComp}</b>
+          <img src={plus} className="plusMinusButton" onClick={()=>changeValueComp(1)} alt="+"/>
         </div>
-        <button className="addToCartButton" onClick={()=>props.func(value)}><img src={cartIcon} alt="cartIcon" className="filter-white" />Add to cart</button>
+        <CartContextConsumer>
+              {({value,changeValue})=>(
+        <button className="addToCartButton" onClick={()=>changeValue(valueComp)}><img src={cartIcon} alt="cartIcon" className="filter-white" />Add to cart</button>
+        )}
+        </CartContextConsumer>
       </div>
     </div>
   );

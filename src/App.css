@@ -150,6 +150,42 @@ html, body {
   .noindent      { margin-left:0;padding-left:0; }
   .nobullet      { list-style:none;list-style-image:none; }
   /* Default clean up over */
+  /* HOMEPAGE */
+  .imageAsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .homeTextContainer{
+    display:flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(0,0,0,0.22);
+    padding:20px;
+  }
+  .homeText{
+    color:white;
+  }
+  .homeButton{
+  display: flex;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 13px 23px;
+  border: 1px solid #222222;
+  transition: box-shadow 0.2s ease 0s, -ms-transform 0.1s ease 0s, -webkit-transform 0.1s ease 0s, transform 0.1s ease 0s;
+  background: #fff;
+  color: #222222;
+}
+.homeButton:hover{
+    border-color: #000000;
+    background: #f7f7f7;
+}
+
   /* MODAL IMAGE */
   .modalImage{
     max-width: 700px;
@@ -437,6 +473,8 @@ html, body {
   .showcaseImage{
     height:250px;
     object-fit: cover;
+    border:2px solid white;
+    border-radius: 10px;
   }
   .showcaseTitle{
     color:hsl(0, 0%, 0%);
