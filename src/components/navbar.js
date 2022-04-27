@@ -6,9 +6,10 @@ import productThumbnail1 from "./../images/image-product-1-thumbnail.jpg";
 import binIcon from "./../images/icon-delete.svg";
 import menuIcon from "./../images/icon-menu.svg";
 import exitIcon from "./../images/icon-close.svg";
-import {CartContextConsumer} from "../CartContext";
+
 
 export default function Navbar(props) {
+  const value=0
   const [showMenu,setShowMenu]=React.useState({
     display: "none",
   });
@@ -48,8 +49,7 @@ export default function Navbar(props) {
         </div>
 
       </div>
-      <CartContextConsumer>
-              {({value,changeValue})=>(
+
                      <div className="navbarRightDiv">
                      <div className="hoverOver">
                        <div className="divForPositon">
@@ -77,7 +77,7 @@ export default function Navbar(props) {
                                    $125.00 x {value} <b>${value * 125}.00</b>
                                  </p>{" "}
                                </div>
-                               <img src={binIcon} onClick={()=>changeValue(0)} alt="delete" />
+                               <img src={binIcon} alt="delete" />
                              </div>
                              <center>
                                <button className="checkoutButton">Checkout</button>
@@ -89,8 +89,7 @@ export default function Navbar(props) {
                      </div>
                      <img src={avatar} className="avatar" alt="profilePicture" />
                    </div>
-              )}
-            </CartContextConsumer>
+
 
     </div>
   );

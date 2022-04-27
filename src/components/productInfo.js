@@ -2,7 +2,7 @@ import React from "react";
 import plus from "./../images/icon-plus.svg"
 import minus from "./../images/icon-minus.svg"
 import cartIcon from "./../images/icon-cart.svg"
-import { CartContextConsumer } from "../CartContext";
+
 
 export default function ProductInfo(props) {
   const [valueComp,setValueComp]=React.useState(0)
@@ -31,11 +31,10 @@ export default function ProductInfo(props) {
           <b className="numberBox">{valueComp}</b>
           <img src={plus} className="plusMinusButton" onClick={()=>changeValueComp(1)} alt="+"/>
         </div>
-        <CartContextConsumer>
-              {({value,changeValue})=>(
-        <button className="addToCartButton" onClick={()=>changeValue(valueComp)}><img src={cartIcon} alt="cartIcon" className="filter-white" />Add to cart</button>
-        )}
-        </CartContextConsumer>
+
+        <button className="addToCartButton" onClick={()=>changeValueComp(valueComp)}><img src={cartIcon} alt="cartIcon" className="filter-white" />Add to cart</button>
+
+
       </div>
     </div>
   );
